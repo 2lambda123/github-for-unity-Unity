@@ -33,7 +33,7 @@
 
   </Target>
 
-  <Target Name="CopyToPackageProject" 
+  <Target Name="CopyToPackageProject"
     AfterTargets="AfterBuild"
     DependsOnTargets="EnumerateBuildOutputs"
     Inputs="@(BuiltFiles)"

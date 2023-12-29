@@ -41,7 +41,7 @@ PluginImporter:
           CPU: ARMv7
     data:
       first:
-        Any: 
+        Any:
       second:
         enabled: 0
         settings:
@@ -141,7 +141,7 @@ PluginImporter:
         settings:
           CPU: AnyCPU
           DontProcess: False
-          PlaceholderPath: 
+          PlaceholderPath:
           SDK: AnySDK
           ScriptingBackend: AnyScriptingBackend
     data:
@@ -150,16 +150,16 @@ PluginImporter:
       second:
         enabled: 0
         settings:
-          CompileFlags: 
-          FrameworkDependencies: 
+          CompileFlags:
+          FrameworkDependencies:
     data:
       first:
         tvOS: tvOS
       second:
         enabled: 0
         settings:
-          CompileFlags: 
-          FrameworkDependencies: 
-  userData: 
-  assetBundleName: 
-  assetBundleVariant: 
+          CompileFlags:
+          FrameworkDependencies:
+  userData:
+  assetBundleName:
+  assetBundleVariant:

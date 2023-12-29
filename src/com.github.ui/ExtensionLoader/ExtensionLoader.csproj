@@ -8,7 +8,7 @@
   </PropertyGroup>
   <Import Project="$(SolutionDir)\common\properties.props" />
   <Import Project="$(SolutionDir)\common\libraries.props" />
-  <Import Project="$(SolutionDir)\common\tests.props" />  
+  <Import Project="$(SolutionDir)\common\tests.props" />
   <Import Project="$(SolutionDir)\common\unityreferences.targets" />
   <PropertyGroup>
     <GlobalOutputPath>$(OutputPath)</GlobalOutputPath>
@@ -19,7 +19,7 @@
     <Sources Include="**\*.cs" Exclude="SolutionInfo.cs" />
   </ItemGroup>
 
-  <Target Name="CopySourcesToBuild" 
+  <Target Name="CopySourcesToBuild"
     AfterTargets="AfterBuild"
     Inputs="@(Sources)"
     Outputs="@(Sources->'$(GlobalOutputPath)\net35\%(RecursiveDir)%(Filename)%(Extension)');@(Sources->'$(GlobalOutputPath)\net471\%(RecursiveDir)%(Filename)%(Extension)')"

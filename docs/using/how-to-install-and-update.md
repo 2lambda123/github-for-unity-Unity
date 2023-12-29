@@ -1,7 +1,7 @@
 # Installation and Updating Guide
 
-[Installing from a Downloaded Package File](#installing-from-a-package-file)  
-[Installing from the Unity Asset Store](#installing-from-the-asset-store)  
+[Installing from a Downloaded Package File](#installing-from-a-package-file)
+[Installing from the Unity Asset Store](#installing-from-the-asset-store)
 [Updating a Previously Installed Version](#updating-the-github-for-unity-package)
 
 _Note: If your Unity project already has the GitHub for Unity plugin installed, see our [Getting Started](https://github.com/github-for-unity/Unity/blob/master/docs/using/getting-started.md) docs before continuing_

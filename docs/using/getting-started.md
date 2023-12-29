@@ -12,7 +12,7 @@ If you have a Unity project (new or existing) that is not yet connected to any r
 
 1. If your Unity project doesn't yet have the GitHub plugin installed, follow [these](https://github.com/github-for-unity/Unity/blob/master/docs/using/how-to-install-and-update.md) instructions for installing it.
 2. Click on the `Initialize a git repository for this project` button
-   <img width="950" alt="screen shot 2018-05-18 at 9 39 13 am" src="https://user-images.githubusercontent.com/1314285/40246918-6d8c9156-5a7f-11e8-8087-6ffad9194969.png">  
+   <img width="950" alt="screen shot 2018-05-18 at 9 39 13 am" src="https://user-images.githubusercontent.com/1314285/40246918-6d8c9156-5a7f-11e8-8087-6ffad9194969.png">
    And you should see the GitHub spinner:
    <img width="253" alt="screen shot 2018-05-18 at 9 39 23 am" src="https://user-images.githubusercontent.com/1314285/40246956-906cca56-5a7f-11e8-8f93-9484d2519359.png">
 3. The GitHub tab should reload with the following buttons:
