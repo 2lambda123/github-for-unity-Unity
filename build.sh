@@ -14,9 +14,9 @@ if [ -e "/c/" ]; then
 	OS="Windows"
 fi
 
-if [ x"$OS" == x"Windows" ]; then
-	./build.cmd $Configuration $Target
+if [ "$OS" == "Windows" ]; then
+	./build.cmd "$Configuration" "$Target"
 else
 	dotnet restore
-	dotnet build -c $Configuration
+	dotnet build -c "$Configuration"
 fi
