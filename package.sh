@@ -51,7 +51,7 @@ else
 	nuget restore GitHub.Unity.sln
 fi
 
-xbuild GitHub.Unity.sln /property:Configuration=$Configuration
+xbuild GitHub.Unity.sln /property:Configuration="$Configuration"
 
 rm -f unity/PackageProject/Assets/Plugins/GitHub/Editor/deleteme*
 rm -f unity/PackageProject/Assets/Plugins/GitHub/Editor/*.pdb
@@ -61,7 +61,7 @@ rm -f unity/PackageProject/Assets/Plugins/GitHub/Editor/*.xml
 Version=$(sed -En 's,.*GitHubForUnityVersion = "(.*)".*,\1,p' common/SolutionInfo.cs)
 commitcount=$(git rev-list  --count HEAD)
 commit=$(git log -n1 --pretty=format:%h)
-Version="${Version}.${commitcount}-${commit}"
+Version="$Version.$commitcount-$commit"
 Version=$Version
 export GITHUB_UNITY_DISABLE=1
-"$Unity" -batchmode -projectPath "$(pwd)/unity/PackageProject" -exportPackage Assets/Plugins/GitHub/Editor github-for-unity-"$Version".unitypackage -force-free -quit
+"$Unity" -batchmode -projectPath "$PWD/unity/PackageProject" -exportPackage Assets/Plugins/GitHub/Editor github-for-unity-"$Version".unitypackage -force-free -quit
