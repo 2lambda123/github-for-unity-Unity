@@ -1,9 +1,7 @@
-var commander = require("commander");
-var package = require('../../package.json')
-var config = require("../configuration");
-var endOfLine = require('os').EOL;
+var commander = require('commander');
+var package = require('../../package.json');
+var config = require('../configuration');
 var fs = require('fs');
-var util = require('util');
 var output = require('../output');
 
 commander
@@ -46,9 +44,6 @@ if (fileContents && host) {
             'Content-Type': 'application/json'
         }
     };
-    if (config.token) {
-        options.headers['Authorization'] = 'token ' + config.token;
-    }
 
     var req = https.request(options, function (res) {
         var success = res.statusCode == 200;
