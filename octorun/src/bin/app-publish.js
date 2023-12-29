@@ -3,8 +3,7 @@ var package = require('../../package.json')
 var ApiWrapper = require('../api')
 var output = require('../output');
 
-commander
-    .version(package.version)
+commander.version(package.version)
     .option('-r, --repository <repository>')
     .option('-d, --description <description>')
     .option('-o, --organization <organization>')
@@ -12,30 +11,27 @@ commander
     .option('-h, --host <host>')
     .parse(process.argv);
 
-if(!commander.repository)
-{
-    commander.help();
-    process.exit(-1);
+if (!commander.repository) {
+  commander.help();
+  process.exit(-1);
 }
 
 var private = false;
 if (commander.private) {
-    private = true;
+  private = true;
 }
-    
-try {
-    var apiWrapper = new ApiWrapper(commander.host);
 
-    apiWrapper.publish(commander.repository, commander.description, private, commander.organization,
-        function (error, result) {
-            if (error) {
-                output.error(error);
-            }
-            else {
-                output.success(result);
-            }
-        });
-}
-catch (error) {
-    output.error(error);
+try {
+  var apiWrapper = new ApiWrapper(commander.host);
+
+  apiWrapper.publish(commander.repository, commander.description, private,
+                     commander.organization, function(error, result) {
+                       if (error) {
+                         output.error(error);
+                       } else {
+                         output.success(result);
+                       }
+                     });
+} catch (error) {
+  output.error(error);
 }
