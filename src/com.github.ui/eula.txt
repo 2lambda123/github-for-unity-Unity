@@ -8,7 +8,7 @@ IF YOU DO NOT AGREE TO ALL OF THE TERMS OF THIS EULA, DO NOT INSTALL, USE OR COP
 
  • You must agree to all of the terms of this EULA to use this Software.
  • If so, you may use the Software for free and for any lawful purpose.
- • This Software automatically communicates with GitHub servers 
+ • This Software automatically communicates with GitHub servers
     for two reasons: (1) to send error reports; and
     (2) to send anonymized usage information. You can view
     sample data to see what information is sent, and you may opt out of

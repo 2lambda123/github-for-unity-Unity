@@ -5,6 +5,7 @@ GitHub for Unity provides access to a git client to help users create their own 
 Users can separate the user interface from the API by removing `GitHub.Unity.dll`. All other libraries are required by the API.
 
 ## Creating an instance of `GitClient`
+
 ```cs
 var defaultEnvironment = new DefaultEnvironment();
 defaultEnvironment.Initialize(null, NPath.Default, NPath.Default, NPath.Default, Application.dataPath.ToNPath());
@@ -16,7 +17,9 @@ var gitClient = new GitClient(defaultEnvironment, processManager, TaskManager.In
 ```
 
 ## Full Example
+
 This example creates a window that has a single button which commits all changes.
+
 ```cs
 using System;
 using System.Globalization;
@@ -46,7 +49,7 @@ public class CustomGitEditor : EditorWindow
         Debug.Log("Init GitClient");
 
         var defaultEnvironment = new DefaultEnvironment();
-        defaultEnvironment.Initialize(null, NPath.Default, NPath.Default, 
+        defaultEnvironment.Initialize(null, NPath.Default, NPath.Default,
             NPath.Default, Application.dataPath.ToNPath());
 
         var processEnvironment = new ProcessEnvironment(defaultEnvironment);
@@ -71,5 +74,3 @@ public class CustomGitEditor : EditorWindow
     }
 }
 ```
-
-

@@ -26,7 +26,7 @@ Clone the repository and its submodules in a git GUI client that supports Git LF
 git lfs clone https://github.com/github-for-unity/Unity
 ```
 
-*Note*: git might complain that it can't checkout the `script` submodule. That submodule is not required for normal builds and you can ignore the error,
+_Note_: git might complain that it can't checkout the `script` submodule. That submodule is not required for normal builds and you can ignore the error,
 or run the following to stop it complaining:
 
 ```
@@ -53,7 +53,6 @@ To provide your own Client ID and Client Secret:
 
 - [Register a new developer application](https://github.com/settings/developers) in your profile.
 - Copy [common/ApplicationInfo_Local.cs-example](../../common/ApplicationInfo_Local.cs-example) to `common/ApplicationInfo_Local.cs` and fill out the clientId/clientSecret fields for your application.
-
 
 ### Visual Studio
 

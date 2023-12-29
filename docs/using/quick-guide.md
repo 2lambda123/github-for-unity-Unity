@@ -3,6 +3,7 @@
 ## More resources
 
 These documents contain more details on how to use the GitHub for Unity plugin:
+
 - **[Installing and Updating the GitHub for Unity package](https://github.com/github-for-unity/Unity/blob/master/docs/using/how-to-install-and-update.md)**
 - **[Getting Started with the GitHub for Unity package](https://github.com/github-for-unity/Unity/blob/master/docs/using/getting-started.md)**
 - **[Authenticating to GitHub](https://github.com/github-for-unity/Unity/blob/master/docs/using/authenticating-to-github.md)**
@@ -15,32 +16,32 @@ These documents contain more details on how to use the GitHub for Unity plugin:
 
 [Installing GitHub for Unity](#installing-github-for-unity)
 
--   [Requirements](#requirements)
-    -   [Git on macOS](#git-on-macos)
-    -   [Git on Windows](#git-on-windows)
--   [Installation](#installation)
--   [Log files](#log-files)
-    -   [Windows](#windows)
-    -   [macOS](#macos)
+- [Requirements](#requirements)
+  - [Git on macOS](#git-on-macos)
+  - [Git on Windows](#git-on-windows)
+- [Installation](#installation)
+- [Log files](#log-files)
+  - [Windows](#windows)
+  - [macOS](#macos)
 
 [Quick Guide to GitHub for Unity](#quick-guide-to-github-for-unity)
 
--   [Opening the GitHub window](#opening-the-github-window)
--   [Initialize Repository](#initialize-repository)
--   [Authentication](#authentication)
--   [Publish a new repository](#publish-a-new-repository)
--   [Commiting your work - Changes tab](#commiting-your-work---changes-tab)
--   [Pushing/pulling your work - History tab](#pushingpulling-your-work---history-tab)
--   [Branches tab](#branches-tab)
--   [Settings tab](#settings-tab)
+- [Opening the GitHub window](#opening-the-github-window)
+- [Initialize Repository](#initialize-repository)
+- [Authentication](#authentication)
+- [Publish a new repository](#publish-a-new-repository)
+- [Commiting your work - Changes tab](#commiting-your-work---changes-tab)
+- [Pushing/pulling your work - History tab](#pushingpulling-your-work---history-tab)
+- [Branches tab](#branches-tab)
+- [Settings tab](#settings-tab)
 
 ## Installing GitHub for Unity
 
 ### Requirements
 
--   Unity 5.4 or higher
-    -   There's currently a blocker issue opened for 5.3 support, so we know it doesn't run there. Personal edition is fine.
--   Git and Git LFS 2.x
+- Unity 5.4 or higher
+  - There's currently a blocker issue opened for 5.3 support, so we know it doesn't run there. Personal edition is fine.
+- Git and Git LFS 2.x
 
 #### Git on macOS
 
@@ -109,12 +110,12 @@ You can access the GitHub window by going to `Windows` -> `GitHub`. The window o
 
 If the current Unity project is not in a Git repository, the GitHub for Unity extension will offer to initialize the repository for you. This will:
 
--   Initialize a git repository at the Unity project root via `git init`
--   Initialize git-lfs via `git lfs install`
--   Set up a `.gitignore` file at the Unity project root.
--   Set up a `.gitattributes` file at the Unity project root with a large list of known binary filetypes (images, audio, etc) that should be tracked by LFS
--   Configure the project to serialize meta files as text
--   Create an initial commit with the `.gitignore` and `.gitattributes` file.
+- Initialize a git repository at the Unity project root via `git init`
+- Initialize git-lfs via `git lfs install`
+- Set up a `.gitignore` file at the Unity project root.
+- Set up a `.gitattributes` file at the Unity project root with a large list of known binary filetypes (images, audio, etc) that should be tracked by LFS
+- Configure the project to serialize meta files as text
+- Create an initial commit with the `.gitignore` and `.gitattributes` file.
 
 ### Authentication
 
@@ -147,7 +148,6 @@ The history tab includes a `Push` button to push your work to the server. Make s
 To receive updates from the server by clicking on the `Pull` button. You cannot pull if you have local changes, so commit your changes before pulling.
 
 ![History tab screenshot](https://user-images.githubusercontent.com/121322/27644965-c1109bba-5bd9-11e7-9257-4fa38f5c67d1.png)
-
 
 For more information on working with changes: - **[Working with Changes](https://github.com/github-for-unity/Unity/blob/master/docs/using/working-with-changes.md#pulling-changes)**
 

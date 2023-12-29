@@ -1,8 +1,5 @@
 using UnityEngine;
 
-namespace GitHub.Unity
-{
-    class RunLocationShim : ScriptableObject
-    {
-    }
+namespace GitHub.Unity {
+class RunLocationShim : ScriptableObject {}
 }
