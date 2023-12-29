@@ -1,35 +1,41 @@
 var commander = require("commander");
-var package = require('../../package.json');
-var authentication = require('../authentication');
-var output = require('../output');
+var package = require("../../package.json");
+var authentication = require("../authentication");
+var output = require("../output");
 
-commander.version(package.version)
-    .option('-t, --twoFactor')
-    .option('-h, --host <host>')
-    .parse(process.argv);
+commander
+  .version(package.version)
+  .option("-t, --twoFactor")
+  .option("-h, --host <host>")
+  .parse(process.argv);
 
-var handleAuthentication =
-    function(username, password, twoFactor) {
-  authentication.handleAuthentication(username, password,
-                                      function(token, status) {
-                                        if (status) {
-                                          output.custom(status, token);
-                                        } else {
-                                          output.success(token);
-                                        }
-                                      },
-                                      function(error) { output.error(error); },
-                                      twoFactor, commander.host);
-}
+var handleAuthentication = function (username, password, twoFactor) {
+  authentication.handleAuthentication(
+    username,
+    password,
+    function (token, status) {
+      if (status) {
+        output.custom(status, token);
+      } else {
+        output.success(token);
+      }
+    },
+    function (error) {
+      output.error(error);
+    },
+    twoFactor,
+    commander.host,
+  );
+};
 
-var encoding = 'utf-8';
+var encoding = "utf-8";
 if (commander.twoFactor) {
   if (process.stdin.isTTY) {
     var readlineSync = require("readline-sync");
-    var username = readlineSync.question('User: ');
-    var password = readlineSync.question('Password: ', {hideEchoBack : true});
+    var username = readlineSync.question("User: ");
+    var password = readlineSync.question("Password: ", { hideEchoBack: true });
 
-    var twoFactor = readlineSync.question('Two Factor: ');
+    var twoFactor = readlineSync.question("Two Factor: ");
 
     try {
       handleAuthentication(username, password, twoFactor);
@@ -37,19 +43,23 @@ if (commander.twoFactor) {
       output.error(error);
     }
   } else {
-    var data = '';
+    var data = "";
     process.stdin.setEncoding(encoding);
 
-    process.stdin.on('readable', function() {
+    process.stdin.on("readable", function () {
       var chunk;
-      while (chunk = process.stdin.read()) {
+      while ((chunk = process.stdin.read())) {
         data += chunk;
       }
     });
 
-    process.stdin.on('end', function() {
-      var items = data.toString().split(/\r?\n/).filter(function(
-          item) { return item; });
+    process.stdin.on("end", function () {
+      var items = data
+        .toString()
+        .split(/\r?\n/)
+        .filter(function (item) {
+          return item;
+        });
 
       try {
         handleAuthentication(items[0], items[1], items[2]);
@@ -63,8 +73,8 @@ if (commander.twoFactor) {
   if (process.stdin.isTTY) {
     var readlineSync = require("readline-sync");
 
-    var username = readlineSync.question('User: ');
-    var password = readlineSync.question('Password: ', {hideEchoBack : true});
+    var username = readlineSync.question("User: ");
+    var password = readlineSync.question("Password: ", { hideEchoBack: true });
 
     try {
       handleAuthentication(username, password);
@@ -73,19 +83,23 @@ if (commander.twoFactor) {
       process.exit();
     }
   } else {
-    var data = '';
+    var data = "";
     process.stdin.setEncoding(encoding);
 
-    process.stdin.on('readable', function() {
+    process.stdin.on("readable", function () {
       var chunk;
-      while (chunk = process.stdin.read()) {
+      while ((chunk = process.stdin.read())) {
         data += chunk;
       }
     });
 
-    process.stdin.on('end', function() {
-      var items = data.toString().split(/\r?\n/).filter(function(
-          item) { return item; });
+    process.stdin.on("end", function () {
+      var items = data
+        .toString()
+        .split(/\r?\n/)
+        .filter(function (item) {
+          return item;
+        });
 
       try {
         handleAuthentication(items[0], items[1]);

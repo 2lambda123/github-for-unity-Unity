@@ -1,39 +1,46 @@
-var commander = require('commander');
-var package = require('../../package.json');
-var output = require('../output');
+var commander = require("commander");
+var package = require("../../package.json");
+var output = require("../output");
 
-commander.version(package.version)
-    .option('-h, --host <host>')
-    .parse(process.argv);
+commander
+  .version(package.version)
+  .option("-h, --host <host>")
+  .parse(process.argv);
 
 var host = commander.host;
 var port = 443;
-var scheme = 'https';
+var scheme = "https";
 
 if (host) {
   var https = require(scheme);
   var options = {
-    protocol : scheme + ':',
-    hostname : host,
-    port : port,
-    path : '/api/v3/meta',
-    method : 'GET',
-    headers : {'Content-Type' : 'application/json'}
+    protocol: scheme + ":",
+    hostname: host,
+    port: port,
+    path: "/api/v3/meta",
+    method: "GET",
+    headers: { "Content-Type": "application/json" },
   };
 
-  var req = https.request(options, function(res) {
+  var req = https.request(options, function (res) {
     var success = res.statusCode == 200;
 
     if (!success) {
       output.error(res.statusCode);
     } else {
-      res.on('data', function(d) { output.custom("success", d, true); });
+      res.on("data", function (d) {
+        output.custom("success", d, true);
+      });
 
-      res.on('end', function(d) { process.exit(); });
+      res.on("end", function (d) {
+        process.exit();
+      });
     }
   });
 
-  req.on('error', function(error) { output.error(error); });
+  req.on("error", function (error) {
+    output.error(error);
+  });
 
   req.end();
 } else {

@@ -1,15 +1,16 @@
 var commander = require("commander");
-var package = require('../../package.json');
-var ApiWrapper = require('../api');
-var output = require('../output');
+var package = require("../../package.json");
+var ApiWrapper = require("../api");
+var output = require("../output");
 
-commander.version(package.version)
-    .option('-h, --host <host>')
-    .parse(process.argv);
+commander
+  .version(package.version)
+  .option("-h, --host <host>")
+  .parse(process.argv);
 
 try {
   var apiWrapper = new ApiWrapper(commander.host);
-  apiWrapper.getOrgs(function(error, result) {
+  apiWrapper.getOrgs(function (error, result) {
     if (error) {
       output.error(error);
     } else {

@@ -1,15 +1,16 @@
 var commander = require("commander");
-var package = require('../../package.json')
-var ApiWrapper = require('../api')
-var output = require('../output');
+var package = require("../../package.json");
+var ApiWrapper = require("../api");
+var output = require("../output");
 
-commander.version(package.version)
-    .option('-r, --repository <repository>')
-    .option('-d, --description <description>')
-    .option('-o, --organization <organization>')
-    .option('-p, --private')
-    .option('-h, --host <host>')
-    .parse(process.argv);
+commander
+  .version(package.version)
+  .option("-r, --repository <repository>")
+  .option("-d, --description <description>")
+  .option("-o, --organization <organization>")
+  .option("-p, --private")
+  .option("-h, --host <host>")
+  .parse(process.argv);
 
 if (!commander.repository) {
   commander.help();
@@ -24,14 +25,19 @@ if (commander.private) {
 try {
   var apiWrapper = new ApiWrapper(commander.host);
 
-  apiWrapper.publish(commander.repository, commander.description, private,
-                     commander.organization, function(error, result) {
-                       if (error) {
-                         output.error(error);
-                       } else {
-                         output.success(result);
-                       }
-                     });
+  apiWrapper.publish(
+    commander.repository,
+    commander.description,
+    private,
+    commander.organization,
+    function (error, result) {
+      if (error) {
+        output.error(error);
+      } else {
+        output.success(result);
+      }
+    },
+  );
 } catch (error) {
   output.error(error);
 }
