@@ -1,5 +1,5 @@
 #!/bin/sh -eux
-rootDirectory="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+rootDirectory="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 outdir="$rootDirectory/artifacts"
 
