@@ -1,5 +1,4 @@
-This package contains third-party software components governed by the license(s) indicated below:
----------
+## This package contains third-party software components governed by the license(s) indicated below:
 
 ===============================================================================
 Port of Axosoft's NSFW (https://github.com/github-for-unity/sfw)
@@ -74,7 +73,7 @@ BY USING THE SOFTWARE, YOU ACCEPT THESE TERMS. IF YOU DO NOT ACCEPT THEM, DO NOT
 
 If you comply with these license terms, you have the rights below.
 
-    INSTALLATION AND USE RIGHTS. You may install and use any number of copies of the software on your devices to design, develop and test your programs. 
+    INSTALLATION AND USE RIGHTS. You may install and use any number of copies of the software on your devices to design, develop and test your programs.
     ADDITIONAL LICENSING REQUIREMENTS AND/OR USE RIGHTS.
         Distributable Code.The software contains code that you are permitted to distribute in programs you develop if you comply with the terms below.
             Right to Use and Distribute. The code and text files listed in the software REDIST.TXT files are "Distributable Code."
@@ -142,41 +141,41 @@ of the following license(s).
 
 Rackspace Threading Library
 
-  Copyright (c) Rackspace, US Inc. All rights reserved.
+Copyright (c) Rackspace, US Inc. All rights reserved.
 
-  Licensed under the Apache License, Version 2.0 (the "License"); you may not use
-  these files except in compliance with the License. You may obtain a copy of the
-  License at
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use
+these files except in compliance with the License. You may obtain a copy of the
+License at
 
-  http://www.apache.org/licenses/LICENSE-2.0
+http://www.apache.org/licenses/LICENSE-2.0
 
-  Unless required by applicable law or agreed to in writing, software distributed
-  under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
-  CONDITIONS OF ANY KIND, either express or implied. See the License for the
-  specific language governing permissions and limitations under the License.
+Unless required by applicable law or agreed to in writing, software distributed
+under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
+CONDITIONS OF ANY KIND, either express or implied. See the License for the
+specific language governing permissions and limitations under the License.
 
 Microsoft .NET Reference Source
 
-  Copyright (c) Microsoft Corporation
+Copyright (c) Microsoft Corporation
 
-  Permission is hereby granted, free of charge, to any person obtaining a copy
-  of this software and associated documentation files (the "Software"), to deal
-  in the Software without restriction, including without limitation the rights
-  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-  copies of the Software, and to permit persons to whom the Software is
-  furnished to do so, subject to the following conditions:
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-  The above copyright notice and this permission notice shall be included in all
-  copies or substantial portions of the Software.
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 
-  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-  SOFTWARE.
-    
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
 ===============================================================================
 ReadOnlyCollectionInterfaces (https://www.openhub.net/p/ReadOnlyCollections)
 ===============================================================================

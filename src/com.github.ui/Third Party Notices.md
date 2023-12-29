@@ -1,5 +1,4 @@
-This package contains third-party software components governed by the license(s) indicated below:
----------
+## This package contains third-party software components governed by the license(s) indicated below:
 
 ===============================================================================
 Port of Axosoft's NSFW (https://github.com/github-for-unity/sfw)
