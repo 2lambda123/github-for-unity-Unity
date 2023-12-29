@@ -30,11 +30,11 @@ using System.Runtime.InteropServices;
 
 namespace System
 {
-    internal static class AssemblyVersionInformation {
-        private const string GitForUnityVersion = "2.0.0";
-        internal const string VersionForAssembly = GitForUnityVersion;
+internal static class AssemblyVersionInformation {
+    private const string GitForUnityVersion = "2.0.0";
+    internal const string VersionForAssembly = GitForUnityVersion;
 
-        // If this is an alpha, beta or other pre-release, mark it as such as shown below
-        internal const string Version = GitForUnityVersion + "-alpha.3";
-    }
+    // If this is an alpha, beta or other pre-release, mark it as such as shown below
+    internal const string Version = GitForUnityVersion + "-alpha.3";
+}
 }
