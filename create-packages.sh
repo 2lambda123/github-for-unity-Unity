@@ -20,8 +20,8 @@ extras2="$rootDirectory/src/git-for-unity/src/extras/$name2"
 ignores2="$rootDirectory/build/packages/$name2/.npmignore"
 version2="$apiVersion"
 
-"$rootDirectory"/submodules/packaging/unitypackage/run.sh --path "$rootDirectory/unity/GHfU-net35" --out "$outdir" --file $packageName-net20-"$uiVersion"
-"$rootDirectory"/submodules/packaging/unitypackage/run.sh --path "$rootDirectory/unity/GHfU-net471" --out "$outdir" --file $packageName-"$uiVersion"
+"$rootDirectory"/submodules/packaging/unitypackage/run.sh --path "$rootDirectory/unity/GHfU-net35" --out "$outdir" --file "$packageName-net20-$uiVersion"
+"$rootDirectory"/submodules/packaging/unitypackage/run.sh --path "$rootDirectory/unity/GHfU-net471" --out "$outdir" --file "$packageName-$uiVersion"
 
 "$rootDirectory"/src/git-for-unity/packaging/create-unity-packages/run.sh --out "$outdir" --name "$name1" --version "$version1" --path "$path1" --extras "$extras1" --ignores "$ignores1"
 "$rootDirectory"/src/git-for-unity/packaging/create-unity-packages/run.sh --out "$outdir" --name "$name2" --version "$version2" --path "$path2" --extras "$extras2" --ignores "$ignores2"
