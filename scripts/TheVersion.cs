@@ -15,32 +15,91 @@ public struct TheVersion
     }
 
     private int major;
-    public int Major { get { Initialize(Version); return major; } }
+    public int Major {
+        get {
+            Initialize(Version);
+            return major;
+        }
+    }
     private int minor;
-    public int Minor { get { Initialize(Version); return minor; } }
-    public bool HasMinor { get; private set; }
+    public int Minor {
+        get {
+            Initialize(Version);
+            return minor;
+        }
+    }
+    public bool HasMinor {
+        get;
+        private set;
+    }
     private int patch;
-    public int Patch { get { Initialize(Version); return patch; } }
-    public bool HasPatch { get; private set; }
+    public int Patch {
+        get {
+            Initialize(Version);
+            return patch;
+        }
+    }
+    public bool HasPatch {
+        get;
+        private set;
+    }
     private int build;
-    public int Build { get { Initialize(Version); return build; } }
-    public bool HasBuild { get; private set; }
+    public int Build {
+        get {
+            Initialize(Version);
+            return build;
+        }
+    }
+    public bool HasBuild {
+        get;
+        private set;
+    }
     private string special;
-    public string Special { get { Initialize(Version); return special; } }
+    public string Special {
+        get {
+            Initialize(Version);
+            return special;
+        }
+    }
     private bool isAlpha;
-    public bool IsAlpha { get { Initialize(Version); return isAlpha; } }
+    public bool IsAlpha {
+        get {
+            Initialize(Version);
+            return isAlpha;
+        }
+    }
     private bool isBeta;
-    public bool IsBeta { get { Initialize(Version); return isBeta; } }
+    public bool IsBeta {
+        get {
+            Initialize(Version);
+            return isBeta;
+        }
+    }
     private bool isUnstable;
-    public bool IsUnstable { get { Initialize(Version); return isUnstable; } }
-    public bool IsValid { get; private set; }
+    public bool IsUnstable {
+        get {
+            Initialize(Version);
+            return isUnstable;
+        }
+    }
+    public bool IsValid {
+        get;
+        private set;
+    }
 
     private int[] intParts;
     private string[] stringParts;
     private int currentPart;
     private string version;
 
-    public string Version { get { return version ?? (version = string.Empty); } set { version = value; } }
+    public string Version {
+        get {
+            return version ?? (version = string.Empty);
+        }
+        set {
+            version = value;
+        }
+    }
 
     private static readonly Regex regex = new Regex(versionRegex);
 

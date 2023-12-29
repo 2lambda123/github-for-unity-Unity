@@ -7,161 +7,163 @@ using Unity.VersionControl.Git;
 
 namespace GitHub.Unity
 {
-    [Serializable]
-    class AuthenticationView : Subview
+[Serializable]
+class AuthenticationView : Subview
+{
+    private static readonly Vector2 viewSize = new Vector2(290, 290);
+
+    private const string WindowTitle = "Authenticate";
+
+    [SerializeField] private SubTab changeTab = SubTab.GitHub;
+    [SerializeField] private SubTab activeTab = SubTab.GitHub;
+
+    [SerializeField] private GitHubAuthenticationView gitHubAuthenticationView;
+    [SerializeField] private GitHubEnterpriseAuthenticationView gitHubEnterpriseAuthenticationView;
+    [SerializeField] private bool hasGitHubDotComConnection;
+    [SerializeField] private bool hasGitHubEnterpriseConnection;
+
+    public override void InitializeView(IView parent)
     {
-        private static readonly Vector2 viewSize = new Vector2(290, 290);
+        base.InitializeView(parent);
+        Title = WindowTitle;
+        Size = viewSize;
 
-        private const string WindowTitle = "Authenticate";
+        gitHubAuthenticationView = gitHubAuthenticationView ?? new GitHubAuthenticationView();
+        gitHubEnterpriseAuthenticationView = gitHubEnterpriseAuthenticationView ?? new GitHubEnterpriseAuthenticationView();
 
-        [SerializeField] private SubTab changeTab = SubTab.GitHub;
-        [SerializeField] private SubTab activeTab = SubTab.GitHub;
-
-        [SerializeField] private GitHubAuthenticationView gitHubAuthenticationView;
-        [SerializeField] private GitHubEnterpriseAuthenticationView gitHubEnterpriseAuthenticationView;
-        [SerializeField] private bool hasGitHubDotComConnection;
-        [SerializeField] private bool hasGitHubEnterpriseConnection;
-
-        public override void InitializeView(IView parent)
+        try
         {
-            base.InitializeView(parent);
-            Title = WindowTitle;
-            Size = viewSize;
+            OAuthCallbackManager.Start();
+        }
+        catch (Exception ex)
+        {
+            Logger.Trace(ex, "Error Starting OAuthCallbackManager");
+        }
 
-            gitHubAuthenticationView = gitHubAuthenticationView ?? new GitHubAuthenticationView();
-            gitHubEnterpriseAuthenticationView = gitHubEnterpriseAuthenticationView ?? new GitHubEnterpriseAuthenticationView();
+        gitHubAuthenticationView.InitializeView(this);
+        gitHubEnterpriseAuthenticationView.InitializeView(this);
 
-            try
+        hasGitHubDotComConnection = Platform.Keychain.Connections.Any(HostAddress.IsGitHubDotCom);
+        hasGitHubEnterpriseConnection = Platform.Keychain.Connections.Any(connection => !HostAddress.IsGitHubDotCom(connection));
+
+        if (hasGitHubDotComConnection)
+        {
+            changeTab = SubTab.GitHubEnterprise;
+            UpdateActiveTab();
+        }
+    }
+
+    public void Initialize(Exception exception)
+    {
+
+    }
+
+    public override void OnUI()
+    {
+        DoToolbarGUI();
+        ActiveView.OnUI();
+    }
+
+    public override bool IsBusy
+    {
+        get {
+            return (gitHubAuthenticationView != null && gitHubAuthenticationView.IsBusy) || (gitHubEnterpriseAuthenticationView != null && gitHubEnterpriseAuthenticationView.IsBusy);
+        }
+    }
+
+    public override void OnDataUpdate()
+    {
+        base.OnDataUpdate();
+        MaybeUpdateData();
+    }
+
+    public override void Finish(bool result)
+    {
+        OAuthCallbackManager.Stop();
+        base.Finish(result);
+    }
+
+    private void MaybeUpdateData()
+    {
+    }
+
+    private static SubTab TabButton(SubTab tab, string title, SubTab currentTab)
+    {
+        return GUILayout.Toggle(currentTab == tab, title, EditorStyles.toolbarButton) ? tab : currentTab;
+    }
+
+    private enum SubTab
+    {
+        None,
+        GitHub,
+        GitHubEnterprise
+    }
+
+    private void DoToolbarGUI()
+    {
+        GUILayout.BeginHorizontal(EditorStyles.toolbar);
+        {
+            EditorGUI.BeginChangeCheck();
             {
-                OAuthCallbackManager.Start();
+                EditorGUI.BeginDisabledGroup(hasGitHubDotComConnection || IsBusy);
+                {
+                    changeTab = TabButton(SubTab.GitHub, "GitHub", changeTab);
+                }
+                EditorGUI.EndDisabledGroup();
+
+                EditorGUI.BeginDisabledGroup(hasGitHubEnterpriseConnection || IsBusy);
+                {
+                    changeTab = TabButton(SubTab.GitHubEnterprise, "GitHub Enterprise", changeTab);
+                }
+                EditorGUI.EndDisabledGroup();
             }
-            catch (Exception ex)
+
+            if (EditorGUI.EndChangeCheck())
             {
-                Logger.Trace(ex, "Error Starting OAuthCallbackManager");
-            }
-
-            gitHubAuthenticationView.InitializeView(this);
-            gitHubEnterpriseAuthenticationView.InitializeView(this);
-
-            hasGitHubDotComConnection = Platform.Keychain.Connections.Any(HostAddress.IsGitHubDotCom);
-            hasGitHubEnterpriseConnection = Platform.Keychain.Connections.Any(connection => !HostAddress.IsGitHubDotCom(connection));
-
-            if (hasGitHubDotComConnection)
-            {
-                changeTab = SubTab.GitHubEnterprise;
                 UpdateActiveTab();
             }
+
+            GUILayout.FlexibleSpace();
         }
+        EditorGUILayout.EndHorizontal();
+    }
 
-        public void Initialize(Exception exception)
+    private void UpdateActiveTab()
+    {
+        if (changeTab != activeTab)
         {
-
+            var fromView = ActiveView;
+            activeTab = changeTab;
+            var toView = ActiveView;
+            SwitchView(fromView, toView);
         }
+    }
+    private void SwitchView(Subview fromView, Subview toView)
+    {
+        GUI.FocusControl(null);
 
-        public override void OnUI()
-        {
-            DoToolbarGUI();
-            ActiveView.OnUI();
-        }
+        if (fromView != null)
+            fromView.OnDisable();
+        toView.OnEnable();
 
-        public override bool IsBusy
-        {
-            get { return (gitHubAuthenticationView != null && gitHubAuthenticationView.IsBusy) || (gitHubEnterpriseAuthenticationView != null && gitHubEnterpriseAuthenticationView.IsBusy); }
-        }
+        // this triggers a repaint
+        Parent.Redraw();
+    }
 
-        public override void OnDataUpdate()
+    private Subview ActiveView
+    {
+        get
         {
-            base.OnDataUpdate();
-            MaybeUpdateData();
-        }
-
-        public override void Finish(bool result)
-        {
-            OAuthCallbackManager.Stop();
-            base.Finish(result);
-        }
-
-        private void MaybeUpdateData()
-        {
-        }
-
-        private static SubTab TabButton(SubTab tab, string title, SubTab currentTab)
-        {
-            return GUILayout.Toggle(currentTab == tab, title, EditorStyles.toolbarButton) ? tab : currentTab;
-        }
-
-        private enum SubTab
-        {
-            None,
-            GitHub,
-            GitHubEnterprise
-        }
-
-        private void DoToolbarGUI()
-        {
-            GUILayout.BeginHorizontal(EditorStyles.toolbar);
+            switch (activeTab)
             {
-                EditorGUI.BeginChangeCheck();
-                {
-                    EditorGUI.BeginDisabledGroup(hasGitHubDotComConnection || IsBusy);
-                    {
-                        changeTab = TabButton(SubTab.GitHub, "GitHub", changeTab);
-                    }
-                    EditorGUI.EndDisabledGroup();
-
-                    EditorGUI.BeginDisabledGroup(hasGitHubEnterpriseConnection || IsBusy);
-                    {
-                        changeTab = TabButton(SubTab.GitHubEnterprise, "GitHub Enterprise", changeTab);
-                    }
-                    EditorGUI.EndDisabledGroup();
-                }
-
-                if (EditorGUI.EndChangeCheck())
-                {
-                    UpdateActiveTab();
-                }
-
-                GUILayout.FlexibleSpace();
-            }
-            EditorGUILayout.EndHorizontal();
-        }
-
-        private void UpdateActiveTab()
-        {
-            if (changeTab != activeTab)
-            {
-                var fromView = ActiveView;
-                activeTab = changeTab;
-                var toView = ActiveView;
-                SwitchView(fromView, toView);
-            }
-        }
-        private void SwitchView(Subview fromView, Subview toView)
-        {
-            GUI.FocusControl(null);
-
-            if (fromView != null)
-                fromView.OnDisable();
-            toView.OnEnable();
-
-            // this triggers a repaint
-            Parent.Redraw();
-        }
-
-        private Subview ActiveView
-        {
-            get
-            {
-                switch (activeTab)
-                {
-                    case SubTab.GitHub:
-                        return gitHubAuthenticationView;
-                    case SubTab.GitHubEnterprise:
-                        return gitHubEnterpriseAuthenticationView;
-                    default:
-                        throw new NotImplementedException();
-                }
+            case SubTab.GitHub:
+                return gitHubAuthenticationView;
+            case SubTab.GitHubEnterprise:
+                return gitHubEnterpriseAuthenticationView;
+            default:
+                throw new NotImplementedException();
             }
         }
     }
+}
 }

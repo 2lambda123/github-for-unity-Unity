@@ -3,39 +3,41 @@ using UnityEngine;
 
 namespace GitHub.Unity
 {
-    class LoadingView : Subview
+class LoadingView : Subview
+{
+    private static readonly Vector2 MinViewSize = new Vector2(300, 250);
+
+    private const string WindowTitle = "Loading...";
+
+    public override void InitializeView(IView parent)
     {
-        private static readonly Vector2 MinViewSize = new Vector2(300, 250);
+        base.InitializeView(parent);
+        Title = WindowTitle;
+        Size = MinViewSize;
+    }
 
-        private const string WindowTitle = "Loading...";
-
-        public override void InitializeView(IView parent)
+    public override void OnUI()
+    {
+        GUILayout.BeginVertical();
         {
-            base.InitializeView(parent);
-            Title = WindowTitle;
-            Size = MinViewSize;
-        }
-
-        public override void OnUI()
-        {
-            GUILayout.BeginVertical();
+            GUILayout.FlexibleSpace();
+            GUILayout.BeginHorizontal();
             {
                 GUILayout.FlexibleSpace();
-                GUILayout.BeginHorizontal();
-                {
-                    GUILayout.FlexibleSpace();
-                    GUILayout.Label(WindowTitle);
-                    GUILayout.FlexibleSpace();
-                }
-                GUILayout.EndHorizontal();
+                GUILayout.Label(WindowTitle);
                 GUILayout.FlexibleSpace();
             }
-            GUILayout.EndVertical();
+            GUILayout.EndHorizontal();
+            GUILayout.FlexibleSpace();
         }
+        GUILayout.EndVertical();
+    }
 
-        public override bool IsBusy
-        {
-            get { return false; }
+    public override bool IsBusy
+    {
+        get {
+            return false;
         }
     }
+}
 }
